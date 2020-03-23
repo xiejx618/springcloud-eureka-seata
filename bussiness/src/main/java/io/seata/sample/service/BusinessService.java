@@ -30,7 +30,7 @@ public class BusinessService {
      * 减库存，下订单
      *
      */
-    @GlobalTransactional(timeoutMills = 6000)
+    @GlobalTransactional(timeoutMills = 600000)
     public void purchase(String userId, String commodityCode, int orderCount) {
         storageFeignClient.deduct(commodityCode, orderCount);
 

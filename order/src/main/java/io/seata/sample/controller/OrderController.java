@@ -19,7 +19,7 @@ public class OrderController {
     @GetMapping(value = "/create", produces = "application/json")
     public Boolean create(String userId, String commodityCode, Integer count) {
 
-        orderService.create(userId, commodityCode, count);
+        orderService.create(null, userId, commodityCode, count);
         return true;
     }
 

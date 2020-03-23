@@ -17,7 +17,7 @@ public class AccountController {
 
     @RequestMapping(value = "/reduce", produces = "application/json")
     public Boolean debit(String userId, int money) {
-        accountService.reduce(userId, money);
+        accountService.reduce(null,userId, money);
         return true;
     }
 }
