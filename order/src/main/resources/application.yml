@@ -1,0 +1,53 @@
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:8761/eureka/
+  instance:
+    hostname: 127.0.0.1
+    prefer-ip-address: true
+feign:
+  hystrix:
+    enabled: true
+logging:
+  level:
+    io:
+      seata: debug
+    org:
+      springframework:
+        cloud:
+          alibaba:
+            seata:
+              web: debug
+server:
+  port: 8082
+spring:
+  application:
+    name: order-service
+  cloud:
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
+  datasource:
+    password: 123456
+    url: jdbc:mysql://127.0.0.1:3306/seata?useSSL=false&serverTimezone=UTC
+    username: root
+  main:
+    allow-bean-definition-overriding: true
+
+
+
+seata:
+  enabled: true
+  application-id: ${spring.application.name}
+  tx-service-group: my_test_tx_group
+  service:
+    vgroup-mapping:
+      my_test_tx_group: default
+    grouplist:
+      default: 127.0.0.1:8091
+  config:
+    type: file
+    file:
+      name: file.conf
+  registry:
+    type: file
